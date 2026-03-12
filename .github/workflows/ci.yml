@@ -29,6 +29,10 @@ jobs:
           run: |
            echo "App: ${{vars.APP_VERSION}}"
 
+        - name: Show Github secrets
+          run: |
+           echo "Secret: ${{secrets.API_KEY}}"
+
         - name: Build
           run: npm run build
           env:
