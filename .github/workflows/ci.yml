@@ -5,24 +5,25 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-workflow_dispatch:
+  workflow_dispatch:
+
+env: #GLOBALES
+  NOVE_VERSION: "20"
+  APP_NAME: cron-ticker-v2
 
 jobs:
-  run-tests:
-    name: Run tests
+  build:
     runs-on: ubuntu-latest
-
+  
+    env: #Job build
+      BUILD_DIR: dist
     steps:
-      - name: Checkout cade
-        uses: actions/checkout@v4
+        - uses: actions/checkout@v4
 
-      - name: Setuo Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22.21.1'
+        - name: Show variables
+          run: echo "App:${{env.APP_NAME}}. Node: ${{env.NODE_VERSION}}"
 
-      - name: Install Dependence
-        run: npm ci
-
-      - name: Run Tests
-        run: npm test
+        - name: Build
+          run: npm run build
+          env:
+              APP_VERSION: "3.0.0"
