@@ -53,6 +53,6 @@ jobs:
 
         - name: Deploy Logs
           run: |
-            echo "Deploying: ${cat dist/build-info.json}"
+            echo "Deploying: $(cat dist/build-info.json)"
 
         
